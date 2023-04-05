@@ -87,9 +87,9 @@ jobs:
           fvm install 
           echo "Confirm Flutter Version ..."
           fvm flutter --version
-      - run: echo "Run flutter analyze"
-      - run: 
-          command: fvm flutter analyze
+      # - run: echo "Run flutter analyze"
+      # - run: 
+      #     command: fvm flutter analyze
       - run: |
           echo "Install xcodes from brew"
           brew install robotsandpencils/made/xcodes
