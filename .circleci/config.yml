@@ -85,7 +85,7 @@ jobs:
           command: brew tap leoafarias/fvm && brew install fvm
       - run: echo "Confirm Flutter Version ..."
       - run: 
-          command: fvm flutter --version
+          command: fvm install && fvm flutter --version
       - run: echo "Run flutter analyze"
       - run: 
           command: fvm flutter analyze
