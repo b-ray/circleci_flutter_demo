@@ -81,15 +81,20 @@ jobs:
     resource_class: b-ray/build
     steps:
       - checkout
-      - run: echo "Installing FVM"
-      - run: 
-          command: brew tap leoafarias/fvm && brew install fvm
-      - run: echo "Confirm Flutter Version ..."
-      - run: 
-          command: fvm install && fvm flutter --version
+      - run: |
+          echo "Installing FVM"
+          brew tap leoafarias/fvm && brew install fvm
+          fvm install 
+          echo "Confirm Flutter Version ..."
+          fvm flutter --version
       - run: echo "Run flutter analyze"
       - run: 
           command: fvm flutter analyze
+      - run: |
+          echo "Install xcodes from brew"
+          brew install robotsandpencils/made/xcodes
+          echo "select xcode version"
+          xcodes select
 
 workflows:
   # test_and_distribute:
