@@ -75,27 +75,36 @@ jobs:
       - run:
           command: bundle exec fastlane distribute_debug
           working_directory: ios
+
   runner-test:
     machine: true
     resource_class: b-ray/build
     steps:
-      - run: echo "Hi I'm on Runners!"
+      - run: echo "Installing FVM"
+      - run: 
+          command: brew tap leoafarias/fvm && brew install fvm
+      - run: echo "Confirm Flutter Version ..."
+      - run: 
+          command: fvm flutter --version
+      - run: echo "Run flutter analyze"
+      - run: 
+          command: fvm flutter analyze
 
 workflows:
-  test_and_distribute:
-    jobs:
-      - flutter-orb/unit_test:
-          version: 2.10.3
-      - flutter-orb/lint:
-          version: 2.10.3
-      - integration_test_ios
-      - distribute_ios:
-          context:
-            - mobile
-      - integration_test_android
-      - distribute_android:
-          context: # Context
-            - mobile
+  # test_and_distribute:
+  #   jobs:
+  #     - flutter-orb/unit_test:
+  #         version: 2.10.3
+  #     - flutter-orb/lint:
+  #         version: 2.10.3
+  #     - integration_test_ios
+  #     - distribute_ios:
+  #         context:
+  #           - mobile
+  #     - integration_test_android
+  #     - distribute_android:
+  #         context: # Context
+  #           - mobile
   testing:
     jobs:
       - runner-test
