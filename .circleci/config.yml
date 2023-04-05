@@ -80,6 +80,7 @@ jobs:
     machine: true
     resource_class: b-ray/build
     steps:
+      - checkout
       - run: echo "Installing FVM"
       - run: 
           command: brew tap leoafarias/fvm && brew install fvm
